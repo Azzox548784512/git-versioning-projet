@@ -18,13 +18,14 @@ def liste_Chiffre():
 
 
 
-def recherche_dichotomique(tab): # pour l'ordinateur 
+def recherche_dichotomique_ordi(tab): # pour l'ordinateur 
     elemT = False
     debut = 0 # le chiffre 1
     fin = len(tab) # le chiffre 100
-    while elemT != True : 
-        réponse = str(input('plus grand, plus petit ?'))
-        millieu = len(tab)//2 # le chiffre 50
+    while elemT != True and debut <= fin : 
+        millieu = (debut+fin)//2 # le chiffre 50
+        print('plus grand, plus petit que : ',millieu,'?')
+        réponse = str(input(' : '))
         if  réponse == 'plus petit' : 
             fin = millieu
             print(fin)
@@ -36,13 +37,23 @@ def recherche_dichotomique(tab): # pour l'ordinateur
         elif debut == fin : 
             print('trouvé le chiffre était : ',millieu)
             elemT = True
+
     return True
 
 def chiffre_aléatoire(): # pour l'utilisateur 
     return randint(1,101)
 
 print('chiffre aléatoire',chiffre_aléatoire())
-recherche_dichotomique(liste_Chiffre()) 
+
+def recherche_dichotomique_user(tab,element):
+    debut = 0 
+    fin = len(tab)-1 
+    trouvé = False
+
+    while trouvé != True and debut <= fin :
+        
+
+
 
 
 
