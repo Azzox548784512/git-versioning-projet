@@ -1,27 +1,30 @@
 import unittest
 from main import liste_Chiffre, recherche_dichotomique_ordi, chiffre_aléatoire, recherche_dichotomique_user
 
-class TestFonctionsOrdi(unittest.TestCase):
+class test_génération(unittest.TestCase):
 
-    def test_liste_Chiffre(self):
-        # Test que la liste contient bien les chiffres de 0 à 99
-        self.assertEqual(liste_Chiffre(), list(range(100)))
+    def test_liste_100(self):
+        tab = liste_Chiffre()
+        tab_test= list(range(1,101))
+        for i in range(0,100):
+            self.assertEqual(tab[i], tab_test[i])
 
-    def test_recherche_dichotomique_ordi(self, mock_input):
-        # Test de la recherche dichotomique de l'ordinateur
-        self.assertTrue(recherche_dichotomique_ordi(liste_Chiffre()))
+    def test_generation_aleatoire(self):
+        for i in range(100):
+            v = chiffre_aléatoire()
+            self.assertTrue(v >= 1)
+            self.assertTrue(v <= 100)
 
+class test_ordi(unittest.TestCase):
 
-class TestFonctionsUtilisateur(unittest.TestCase):
-    def test_chiffre_aléatoire(self):
-        # Test que le nombre généré est bien entre 0 et 100
-        nombre = chiffre_aléatoire()
-        self.assertTrue(0 <= nombre <= 100)
+    def test_fonction_ordi(self):
+        x = recherche_dichotomique_ordi(liste_Chiffre())
+        self.assertEqual(x,"trouvé")
 
-    def test_recherche_dichotomique_user(self):
-        # Test de la recherche dichotomique pour l'utilisateur
-        with patch('main.chiffre_aléatoire', return_value=50):
-            recherche_dichotomique_user(50)  # Ici 50 est l'entrée simulée par mock_input
+class test_entree_user(unittest.TestCase):
+    def Vérification_saisie_user(self):
+        x = recherche_dichotomique_user(chiffre_aléatoire())
+        self.assertTrue()
 
 
 if __name__ == '__main__':
