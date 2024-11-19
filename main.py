@@ -35,7 +35,7 @@ def recherche_dichotomique_ordi(tab):
             debut = millieu 
             
 
-    return True
+    return elemT
 
 
 # Fonction utilisé pour l'utilisateur
@@ -56,6 +56,8 @@ def recherche_dichotomique_user(le_chiffre):
         
         else : 
             print('plus')
+            
+    return trouvé 
     
     
 # le jeu :
