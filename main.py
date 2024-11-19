@@ -42,34 +42,41 @@ def recherche_dichotomique_ordi(tab):
 # Fonction utilisé pour l'utilisateur
 
 def chiffre_aléatoire():  
-    return randint(0,100)
+    return randint(1,100)
 
-def recherche_dichotomique_user(le_chiffre): 
+def user(le_chiffre,saisie_user,liste): 
     trouvé = False
     while trouvé != True :
-        nombre = int(input('ton chiffre : '))
-        if nombre == le_chiffre :
-            print('gagné')
-            break 
-        
-        elif nombre > le_chiffre : 
-            print('moins')
-        
-        else : 
-            print('plus')
+        if saisie_user > liste[0] and saisie_user < liste[len(liste)+1]:
+            if saisie_user == le_chiffre :
+                trouvé = True 
             
-    return trouvé 
+            elif saisie_user > le_chiffre : 
+                return ('-')
+            
+            elif saisie_user < le_chiffre: 
+                return ('+')
+
+        else : 
+            return ('hors intervalle')
+            
+    return True
     
     
 # le jeu :
 jeu = True 
 # Partie 1 la machine doit trouver le chiffre auxquel tu pense 
-'''
 while jeu != False : 
     print("répondre par : Jouer/Machine")
     Init_game = input("voulez vous jouez ou faire jouer la machine ? ")
     if Init_game == 'Jouer' or Init_game == 'JOUER' or Init_game == 'jouer' :
-        recherche_dichotomique_user(chiffre_aléatoire())
+        proposition_user = int(input(' : '))
+        x = chiffre_aléatoire()
+        print(x)
+        while user(x,proposition_user,liste_Chiffre()) != True : 
+            proposition_user = int(input(' : ')) # on demande un chiffre à l'utilisateur 
+            lancement = user(x,proposition_user,liste_Chiffre()) # on fait trouner la fonction jusqu'a ce que la fonction retourne True 
+            print(lancement) # montre ce que la fonction retourne 
     
     else : 
         recherche_dichotomique_ordi(liste_Chiffre())
@@ -82,8 +89,4 @@ while jeu != False :
         jeu = False 
 
 print("merci d'avoir jouer au jeu")   
-
-'''
-
-
 

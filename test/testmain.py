@@ -19,7 +19,7 @@ def recherche_dichotomique(tableau, valeur):
     return -1  # La valeur n'est pas dans le tableau
 
 def generation_aleatoire():
-    x = random.randint(1,100)
+    x = random.randint(1,101)
 
     return x 
 
@@ -29,10 +29,9 @@ def liste_100(liste=[]):
     
     return liste
 
-x = liste_100
-
 print(liste_100())
-
-a = list(range(1,101))
-print(a)
-
+for i in range(1000) : 
+    x = generation_aleatoire()
+    if x == 101 :
+        print(x)
+    
