@@ -1,5 +1,5 @@
 import unittest
-from testmain import recherche_dichotomique,liste_100,generation_aleatoire
+from testmain import entree_ind, ordinateur,liste_100,generation_aleatoire
 
 
 class Testfonction(unittest.TestCase) :
@@ -18,7 +18,13 @@ class Testfonction(unittest.TestCase) :
             self.assertTrue(v <= 100)
 
     def test_trouvé(self):
+        pass
 
+class test_entree_user_ordi(unittest.TestCase) : 
+    
+    def test_ind_user(self):
+        x = entree_ind()
+        self.assertTrue()
 
 
 
