@@ -1,5 +1,5 @@
 import unittest
-from main import liste_Chiffre, recherche_dichotomique_ordi, chiffre_aléatoire, user
+from main import liste_Chiffre, millieu, chiffre_aléatoire, user,indication_user,demande_chiffre_user
 
 class test_génération(unittest.TestCase):
 
@@ -15,16 +15,17 @@ class test_génération(unittest.TestCase):
                 self.assertTrue(v >= 1)
                 self.assertTrue(v <= 100)
 
-class test_ordi(unittest.TestCase):
+class test_fonction_ordi(unittest.TestCase):
 
-        def test_fonction_ordi(self):
-            x = recherche_dichotomique_ordi(liste_Chiffre())
-            self.assertEqual(x,"trouvé")
+        def test_fonction_millieu(self):
+            self.assertTrue(millieu(0,100) == 50)
+            
 
-class test_entree_user(unittest.TestCase):
+class test_entree_user_userGame(unittest.TestCase):
         def test_saisie_victorieuse(self):
-            x = user(60,60,liste_Chiffre())
-            self.assertTrue(x==True)
+            y = chiffre_aléatoire()
+            x = demande_chiffre_user()
+            self.assertTrue(x==y)
         
         def test_saisie_chiffre_supérieur(self):
             x = user(60,70,liste_Chiffre())
