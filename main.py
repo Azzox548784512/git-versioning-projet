@@ -2,7 +2,6 @@
 
 from random import *
 from math import *
-#from main import UnitTest
 
 def liste_Chiffre():
     liste_0à100 = []
@@ -25,22 +24,21 @@ def indication_user():
     return saisi
 
 def jeu_ordi(millieu,indication):
+    jeu_ordi = True 
     while jeu_ordi != False :
-            x = millieu(debut,fin) 
-            print('le millieu : ',x)
-            y = indication
+        print('le millieu : ',millieu)
+        
+        if debut == fin or indication == '=':
+            print('votre chiffre était le : ',millieu)
+            jeu_ordi = False 
+            break
 
-            if debut == fin or y == '=':
-                print('votre chiffre était le : ',x)
-                jeu_ordi = False 
-                break
-
-            else : 
-                if y == '+' :
-                    debut = x
+        else : 
+            if indication == '+' :
+                debut = millieu
                 
-                if y == '-' : 
-                    fin = x
+            if indication == '-' : 
+                fin = millieu
     #print('fin : ',fin)
     #print('début : ',debut)
 
@@ -48,10 +46,10 @@ def jeu_ordi(millieu,indication):
 def chiffre_aléatoire():  
     return randint(1,100)
 
-def long(liste):
+def longueur(liste):
     return len(liste)
 
-print('la longueur de la liste',long(liste_Chiffre()))
+print('la longueur de la liste',longueur(liste_Chiffre()))
 
 def user(le_chiffre,saisie_user,liste): 
     trouvé = False
@@ -59,7 +57,7 @@ def user(le_chiffre,saisie_user,liste):
         #print(saisie_user)
         #print(liste[0])
         #print(long(liste)+1)
-        if saisie_user >= liste[0] and saisie_user < long(liste)+1:
+        if saisie_user >= liste[0] and saisie_user < longueur(liste)+1:
             if saisie_user == le_chiffre :
                 trouvé = True 
             
@@ -111,7 +109,7 @@ def jeu_globale():
             jeu_user()
 
         else :
-            jeu_ordi(millieu(0,long(liste_Chiffre())),indication_user())
+            jeu_ordi(millieu(0,longueur(liste_Chiffre())),indication_user())
 
         End_game = input("voulez vous rejouez ou faire jouer l'ordinateur ? oui/non : ")  
 
@@ -121,8 +119,6 @@ def jeu_globale():
     print("merci d'avoir jouer au jeu")   
 
 print('fin des test----')
-
-
 
 jeu_globale()
         

@@ -14,6 +14,7 @@ class test_génération(unittest.TestCase):
             v = chiffre_aléatoire()
             self.assertTrue(v >= 1)
             self.assertTrue(v <= 100)
+            
     def test_fonction_millieu(self):
         self.assertTrue(millieu(0,100) == 50)
 

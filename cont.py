@@ -1,40 +1,48 @@
-liste = list(range(1, 101))
 
-def millieu(debu,f1):
+def ordi():
+    jeu_ordi = True 
+    debut = 0
+    fin = longueur(liste_Chiffre())
+    while jeu_ordi != False :
+        #print('debut: ',debut)
+        #print('fin',fin)
+        mid = millieu(debut,fin)
+        print('Ce chiffre ? : ',mid)
+        indication = indication_user()
+        
+        if debut+1 == fin :
+            print('le chiffre auxquelles vous pensez est le : ',mid)
+            jeu_ordi = False 
+            break
+
+        if indication == '+' :
+            debut = mid+1
+        elif indication == '-' : 
+            fin = mid-1
+        elif indication == '=' : 
+            return mid
+        else :
+            print('!!CARACTÈRE NON VALIDE!!')
+    return mid
+
+def liste_Chiffre():
+    liste_0à100 = []
+    for i in range(1,101):
+        liste_0à100.append(i)
+    return liste_0à100
+
+def longueur(liste):
+    return len(liste)
+
+
+def millieu(debu,f1): 
     millieu = (debu+f1)//2
-    return millieu 
+    return millieu#,debu,f1
 
     
-def indication_user():
+def indication_user(): 
     saisi = input('mettez votre indication pour la machine +/-/= : ')
     return saisi
 
 
-jeu = True
-debut = 0
-fin = len(liste) 
-while jeu != False :
-    x = millieu(debut,fin) 
-    print('le millieu : ',x)
-    y = indication_user()
-
-    if debut == fin or y == '=':
-        print('votre chiffre était le : ',x)
-        jeu = False 
-        break
-
-    else : 
-        if y == '+' :
-            debut = x
-        
-        if y == '-' : 
-            fin = x
-
-    
-
-    print('fin : ',fin)
-    print('début : ',debut)
-    
-print("merci d'avoir joué au jeu ! ")
-
-    
+print(ordi())
