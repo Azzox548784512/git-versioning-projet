@@ -9,11 +9,6 @@ def liste_Chiffre():
         liste_0à100.append(i)
     return liste_0à100
 
-print('test----')
-print('liste de chiffre de ses morts : ',liste_Chiffre())
-la = len(liste_Chiffre())+1
-print('la longueur de la liste +1 est : ',la)
-
 def millieu(debu,f1): 
     millieu = (debu+f1)//2
     return millieu 
@@ -23,24 +18,32 @@ def indication_user():
     saisi = input('mettez votre indication pour la machine +/-/= : ')
     return saisi
 
-def jeu_ordi(millieu,indication):
+def ordi():
     jeu_ordi = True 
+    debut = 0
+    fin = longueur(liste_Chiffre())
     while jeu_ordi != False :
-        print('le millieu : ',millieu)
+        #print('debut: ',debut)
+        #print('fin',fin)
+        mid = millieu(debut,fin)
+        print('Ce chiffre ? : ',mid)
+        indication = indication_user()
         
-        if debut == fin or indication == '=':
-            print('votre chiffre était le : ',millieu)
+        if debut == fin :
+            print('le chiffre auxquelles vous pensez est le : ',mid)
             jeu_ordi = False 
             break
 
-        else : 
-            if indication == '+' :
-                debut = millieu
-                
-            if indication == '-' : 
-                fin = millieu
-    #print('fin : ',fin)
-    #print('début : ',debut)
+        if indication == '+' :
+            debut = mid+1
+        elif indication == '-' : 
+            fin = mid-1
+        elif indication == '=' : 
+            return mid
+        else :
+            print('!!CARACTÈRE NON VALIDE!!')
+
+    return "si t'es arrivé c que c'est bon"
 
 
 def chiffre_aléatoire():  
@@ -49,36 +52,39 @@ def chiffre_aléatoire():
 def longueur(liste):
     return len(liste)
 
-print('la longueur de la liste',longueur(liste_Chiffre()))
-
 def user(le_chiffre,saisie_user,liste): 
     trouvé = False
     while trouvé != True :
         #print(saisie_user)
         #print(liste[0])
-        #print(long(liste)+1)
-        if saisie_user >= liste[0] and saisie_user < longueur(liste)+1:
-            if saisie_user == le_chiffre :
-                trouvé = True 
-            
-            elif saisie_user > le_chiffre : 
-                return ('-')
-            
-            elif saisie_user < le_chiffre: 
-                return ('+')
+        #print(long(liste)+1) 
+            if saisie_user >= liste[0] and saisie_user < longueur(liste)+1:
+                if saisie_user == le_chiffre :
+                    trouvé = True 
+                
+                elif saisie_user > le_chiffre : 
+                    return ('-')
+                
+                elif saisie_user < le_chiffre: 
+                    return ('+')
 
-        else :
-            return('hors intervalle')
+            else :
+                return('hors intervalle')
             
             
     return trouvé
 
 def demande_chiffre_user():
-    proposition_user = int(input(' : '))
-    return proposition_user
+    while True:
+        proposition_user = input('Veuillez entrer un chiffre : ')
+        try:
+            chiffre = int(proposition_user)
+            return chiffre
+        except ValueError:
+            print("Entrée invalide. Veuillez entrer un chiffre entier.")
 
 def redemande_user():
-    re = int(input('votre chiffre est hors intervalle veuillez saisir un chiffre compris entre 1 et 100 : '))
+    re = int(input('votre chiffre invalide veuillez saisir un chiffre compris entre 1 et 100 : '))
     return re
 
 def jeu_user(): 
@@ -95,30 +101,37 @@ def jeu_user():
         
         else : 
             lancement = user(x,demande_chiffre_user(),liste_Chiffre())
+    return 'valide'
              
 
 def jeu_globale():
-    jeu_globale = True 
+    jeu_actif = True
 
-    while jeu_globale != False : 
-        
-        print("répondre par : Jouer/Machine")
-        Init_game = input("voulez vous jouez ou faire jouer la machine ? ")
-        
-        if Init_game == 'Jouer' or Init_game == 'JOUER' or Init_game == 'jouer' :
+    while jeu_actif:
+        print("Répondre par : Jouer/Machine")
+        Init_game = input("Voulez-vous jouer ou faire jouer la machine ? ").strip().lower()
+
+        if Init_game == "jouer":
             jeu_user()
+        elif Init_game == "machine":
+            print(ordi())
+        else:
+            print("Entrée invalide. Veuillez répondre par 'Jouer' ou 'Machine'.")
+            continue
 
-        else :
-            jeu_ordi(millieu(0,longueur(liste_Chiffre())),indication_user())
+        while True:
+            End_game = input("Voulez-vous rejouer ou faire jouer l'ordinateur ? oui/non : ").strip().lower()
 
-        End_game = input("voulez vous rejouez ou faire jouer l'ordinateur ? oui/non : ")  
+            if End_game == "non":
+                jeu_actif = False
+                break
+            elif End_game == "oui":
+                break
+            else:
+                print("Entrée invalide. Veuillez répondre par 'oui' ou 'non'.")
 
-        if End_game == 'non' or End_game == 'NON' or End_game == 'Non' : 
-            jeu_globale = False 
+    print("Merci d'avoir joué au jeu !")
 
-    print("merci d'avoir jouer au jeu")   
-
-print('fin des test----')
 
 jeu_globale()
         

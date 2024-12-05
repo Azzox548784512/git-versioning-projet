@@ -1,5 +1,6 @@
 import unittest
-from main import liste_Chiffre, millieu, chiffre_aléatoire, user,indication_user,demande_chiffre_user, jeu_ordi,jeu_user,jeu_globale
+from main import liste_Chiffre, millieu, chiffre_aléatoire, user,indication_user,redemande_user,demande_chiffre_user, ordi,jeu_user,jeu_globale
+
 
 class test_génération(unittest.TestCase):
 
@@ -23,36 +24,35 @@ class test_entree_user_OrdiGame(unittest.TestCase):
             
 class test_entree_user_userGame(unittest.TestCase):
         def test_saisie_victorieuse(self):
-            x = user(60,60,liste_Chiffre())
-            self.assertTrue(x==True)
+            self.assertTrue(user(60,60,liste_Chiffre())==True)
         
         def test_saisie_chiffre_supérieur(self):
-            x = user(60,70,liste_Chiffre())
-            self.assertTrue(x=='-')
+            self.assertTrue(user(60,70,liste_Chiffre())=='-')
         
         def test_saisie_chiffre_inférieur(self):
-            x = user(60,30,liste_Chiffre())
-            self.assertTrue(x=='+')
+            self.assertTrue(user(60,30,liste_Chiffre())=='+')
         
         def test_saisie_superieur_intervalle(self):
-             x = user(60,150,liste_Chiffre())
-             self.assertTrue(x=='hors intervalle')
+            self.assertTrue(user(60,150,liste_Chiffre())=='hors intervalle')
         
         def test_saisie_inferieur_intervalle(self):
-             x = user(60,-1,liste_Chiffre())
-             self.assertTrue(x=='hors intervalle')
+            self.assertTrue(user(60,-1,liste_Chiffre())=='hors intervalle')
+           
+        
 
 class test_fonction_globale(unittest.TestCase):
 
     def test_fonction_jeu_ordi_auto(self):
-        jeu_ordi()
-        pass
-    def test_fonction_user_auto(self):
-        jeu_user()
-        pass
+        self.assertTrue(ordi()=="si t'es arrivé c que c'est bon")
+
+    
+    def test_fonction_user_auto_valide(self):
+        var = jeu_user()
+        self.assertTrue(var=='valide')
+    
+        
     def test_fonction_globale(self):
         pass
-
 
 if __name__ == '__main__':
     unittest.main()
