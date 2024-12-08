@@ -39,7 +39,7 @@ def ordi():
         elif indication == '-' : 
             fin = mid-1
         elif indication == '=' : 
-            return mid
+            return "si t'es arrivé c que c'est bon"
         else :
             print('!!CARACTÈRE NON VALIDE!!')
 
@@ -131,8 +131,7 @@ def jeu_globale():
                 print("Entrée invalide. Veuillez répondre par 'oui' ou 'non'.")
 
     print("Merci d'avoir joué au jeu !")
+    return 'good'
 
-
-jeu_globale()
         
  

@@ -52,7 +52,7 @@ class test_fonction_globale(unittest.TestCase):
     
         
     def test_fonction_globale(self):
-        pass
+        self.assertTrue(jeu_globale()=='good')
 
 if __name__ == '__main__':
     unittest.main()
